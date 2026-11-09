@@ -2,14 +2,13 @@ cmake_minimum_required(VERSION 3.20)
 
 project(api VERSION 0.1.0 LANGUAGES CXX)
 
-set(APFLOAT_SOURCE_DIR "C:/src/apfloat" CACHE PATH
-    "Path to an Apfloat source checkout")
-
-if (EXISTS "${APFLOAT_SOURCE_DIR}/CMakeLists.txt")
-    add_subdirectory("${APFLOAT_SOURCE_DIR}" apfloat)
-else()
-    find_package(apfloat CONFIG REQUIRED)
-endif()
+include(FetchContent)
+FetchContent_Declare(
+    apfloat
+    GIT_REPOSITORY https://github.com/n7jti/apfloat.git
+    GIT_TAG 3d85e83c87e9ff357e3eb9c8da702060e9de08d7
+)
+FetchContent_MakeAvailable(apfloat)
 
 add_executable(pionpi src/main.cpp)
 target_compile_features(pionpi PRIVATE cxx_std_17)

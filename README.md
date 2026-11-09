@@ -1,20 +1,19 @@
 # pionpi
 
-`pionpi` is a C++17 command-line program that uses the local
-[Apfloat](C:\src\apfloat) library to calculate Pi to millions of decimal
-digits. It evaluates the Chudnovsky series with exact signed-integer binary
-splitting, then converts the final ratio to guarded Apfloat precision.
+`pionpi` is a C++17 command-line program that calculates Pi to millions of
+decimal digits. It evaluates the Chudnovsky series with exact signed-integer
+binary splitting, then converts the final ratio to guarded Apfloat precision.
 
 ## Build
 
 ```powershell
-cmake -S . -B build -DAPFLOAT_SOURCE_DIR=C:\src\apfloat
+cmake -S . -B build
 cmake --build build --config Release
 ```
 
-The default `APFLOAT_SOURCE_DIR` is `C:/src/apfloat`. If Apfloat has been
-installed as a CMake package instead, set that cache variable to a nonexistent
-path and configure with `CMAKE_PREFIX_PATH` pointing to its install prefix.
+On its first configure, CMake downloads Apfloat from GitHub at the pinned
+commit required by Pionpi. Git and network access are therefore required for
+that initial configure; subsequent builds reuse CMake's populated build tree.
 
 ## Use
 
